@@ -146,6 +146,7 @@ func New(
 
 func (s *Server) Routes() http.Handler {
 	mux := http.NewServeMux()
+	mux.HandleFunc("GET /", s.handleRoot)
 	mux.HandleFunc("GET /healthz", s.handleHealth)
 	mux.HandleFunc("GET /api/v1/app/bootstrap", s.handleBootstrap)
 	mux.HandleFunc("GET /api/v1/meta/country-calling-codes", s.handleCountryCallingCodes)
@@ -264,6 +265,14 @@ func (s *Server) Routes() http.Handler {
 	mux.HandleFunc("GET /ws/sensors", s.handleSensorsWebSocket)
 
 	return s.withMiddleware(mux)
+}
+
+func (s *Server) handleRoot(w http.ResponseWriter, r *http.Request) {
+	s.respondJSON(w, http.StatusOK, map[string]string{
+		"service": "MacRadar API",
+		"health":  "/healthz",
+		"hint":    "Bu adres mobil uygulama backendidir; web arayuzu yoktur.",
+	})
 }
 
 func (s *Server) handleHealth(w http.ResponseWriter, r *http.Request) {
