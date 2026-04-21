@@ -1,0 +1,470 @@
+{
+  "appSettings": [
+    {
+      "gender": "prefer_not_to_say",
+      "language": "tr",
+      "notifyFollowRequests": true,
+      "notifyMessages": true,
+      "notifyPostLikes": true,
+      "onlyFollowedUsersCanMessage": false,
+      "updatedAt": "2026-04-17T11:51:00.941Z",
+      "userId": "user_8aceaa8ae473"
+    },
+    {
+      "gender": "prefer_not_to_say",
+      "language": "tr",
+      "notifyFollowRequests": true,
+      "notifyMessages": true,
+      "notifyPostLikes": true,
+      "onlyFollowedUsersCanMessage": false,
+      "updatedAt": "2026-04-17T11:51:00.963Z",
+      "userId": "user_53b1efff5e34"
+    },
+    {
+      "gender": "prefer_not_to_say",
+      "language": "tr",
+      "notifyFollowRequests": true,
+      "notifyMessages": true,
+      "notifyPostLikes": true,
+      "onlyFollowedUsersCanMessage": false,
+      "updatedAt": "2026-04-17T11:51:15.958Z",
+      "userId": "user_f98750fe84e8"
+    },
+    {
+      "gender": "prefer_not_to_say",
+      "language": "tr",
+      "notifyFollowRequests": true,
+      "notifyMessages": true,
+      "notifyPostLikes": true,
+      "onlyFollowedUsersCanMessage": false,
+      "updatedAt": "2026-04-17T11:51:15.981Z",
+      "userId": "user_52893996df00"
+    },
+    {
+      "gender": "prefer_not_to_say",
+      "language": "tr",
+      "notifyFollowRequests": true,
+      "notifyMessages": true,
+      "notifyPostLikes": true,
+      "onlyFollowedUsersCanMessage": false,
+      "updatedAt": "2026-04-17T11:51:35.831Z",
+      "userId": "user_a54dd1969c58"
+    },
+    {
+      "gender": "prefer_not_to_say",
+      "language": "tr",
+      "notifyFollowRequests": true,
+      "notifyMessages": true,
+      "notifyPostLikes": true,
+      "onlyFollowedUsersCanMessage": false,
+      "updatedAt": "2026-04-20T14:44:58.737Z",
+      "userId": "user_9450c72934fd"
+    },
+    {
+      "gender": "prefer_not_to_say",
+      "language": "tr",
+      "notifyFollowRequests": true,
+      "notifyMessages": true,
+      "notifyPostLikes": true,
+      "onlyFollowedUsersCanMessage": false,
+      "updatedAt": "2026-04-20T14:45:16.653Z",
+      "userId": "user_6c689a170a37"
+    }
+  ],
+  "blockedUsers": [],
+  "comments": [],
+  "followRequests": [
+    {
+      "createdAt": "2026-04-17T11:51:01.144Z",
+      "id": "freq_be602b775903",
+      "requesterId": "user_53b1efff5e34",
+      "status": "pending",
+      "targetId": "user_8aceaa8ae473"
+    }
+  ],
+  "follows": [],
+  "mapPreferences": [
+    {
+      "mapFilterMode": "street_friends",
+      "mapThemeMode": "dark",
+      "showLocalLayer": true,
+      "showRemoteLayer": true,
+      "trackingEnabled": false,
+      "updatedAt": "2026-04-17T11:51:00.941Z",
+      "userId": "user_8aceaa8ae473"
+    },
+    {
+      "mapFilterMode": "street_friends",
+      "mapThemeMode": "dark",
+      "showLocalLayer": true,
+      "showRemoteLayer": true,
+      "trackingEnabled": false,
+      "updatedAt": "2026-04-17T11:51:00.963Z",
+      "userId": "user_53b1efff5e34"
+    },
+    {
+      "mapFilterMode": "street_friends",
+      "mapThemeMode": "dark",
+      "showLocalLayer": true,
+      "showRemoteLayer": true,
+      "trackingEnabled": false,
+      "updatedAt": "2026-04-17T11:51:15.958Z",
+      "userId": "user_f98750fe84e8"
+    },
+    {
+      "mapFilterMode": "street_friends",
+      "mapThemeMode": "dark",
+      "showLocalLayer": true,
+      "showRemoteLayer": true,
+      "trackingEnabled": false,
+      "updatedAt": "2026-04-17T11:51:15.981Z",
+      "userId": "user_52893996df00"
+    },
+    {
+      "mapFilterMode": "street_friends",
+      "mapThemeMode": "dark",
+      "showLocalLayer": true,
+      "showRemoteLayer": true,
+      "trackingEnabled": false,
+      "updatedAt": "2026-04-17T11:51:35.831Z",
+      "userId": "user_a54dd1969c58"
+    },
+    {
+      "mapFilterMode": "street_friends",
+      "mapThemeMode": "dark",
+      "showLocalLayer": true,
+      "showRemoteLayer": true,
+      "trackingEnabled": true,
+      "updatedAt": "2026-04-20T14:44:58.737Z",
+      "userId": "user_9450c72934fd"
+    },
+    {
+      "mapFilterMode": "street_friends",
+      "mapThemeMode": "dark",
+      "showLocalLayer": true,
+      "showRemoteLayer": true,
+      "trackingEnabled": true,
+      "updatedAt": "2026-04-20T14:45:16.653Z",
+      "userId": "user_6c689a170a37"
+    }
+  ],
+  "passwordResetCodes": [],
+  "playlists": {
+    "kesfet": {
+      "accentColor": "#1DB954",
+      "coverImageUrl": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=500&q=80",
+      "embedUrl": "https://open.spotify.com/embed/playlist/71bTdg4GvnVU0ME85qOtm5?utm_source=generator&theme=0",
+      "id": "playlist_discovery",
+      "openUrl": "https://open.spotify.com/playlist/71bTdg4GvnVU0ME85qOtm5",
+      "spotifyPlaylistId": "71bTdg4GvnVU0ME85qOtm5",
+      "subtitle": "Spotify playlist served by the local Node backend",
+      "theme": 0,
+      "title": "Road Radar: Discovery Mix"
+    },
+    "takipte": {
+      "accentColor": "#1DB954",
+      "coverImageUrl": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=500&q=80",
+      "embedUrl": "https://open.spotify.com/embed/playlist/71bTdg4GvnVU0ME85qOtm5?utm_source=generator&theme=0",
+      "id": "playlist_discovery",
+      "openUrl": "https://open.spotify.com/playlist/71bTdg4GvnVU0ME85qOtm5",
+      "spotifyPlaylistId": "71bTdg4GvnVU0ME85qOtm5",
+      "subtitle": "Spotify playlist served by the local Node backend",
+      "theme": 0,
+      "title": "Road Radar: Discovery Mix"
+    },
+    "sizin-icin": {
+      "accentColor": "#1DB954",
+      "coverImageUrl": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=500&q=80",
+      "embedUrl": "https://open.spotify.com/embed/playlist/71bTdg4GvnVU0ME85qOtm5?utm_source=generator&theme=0",
+      "id": "playlist_discovery",
+      "openUrl": "https://open.spotify.com/playlist/71bTdg4GvnVU0ME85qOtm5",
+      "spotifyPlaylistId": "71bTdg4GvnVU0ME85qOtm5",
+      "subtitle": "Spotify playlist served by the local Node backend",
+      "theme": 0,
+      "title": "Road Radar: Discovery Mix"
+    }
+  },
+  "postEngagements": [],
+  "posts": [],
+  "profilePosts": [],
+  "privacySettings": [
+    {
+      "isMapVisible": true,
+      "isPrivateAccount": true,
+      "updatedAt": "2026-04-17T11:51:01.139Z",
+      "userId": "user_8aceaa8ae473"
+    },
+    {
+      "isMapVisible": true,
+      "isPrivateAccount": false,
+      "updatedAt": "2026-04-17T11:51:00.963Z",
+      "userId": "user_53b1efff5e34"
+    },
+    {
+      "isMapVisible": true,
+      "isPrivateAccount": false,
+      "updatedAt": "2026-04-17T11:51:15.958Z",
+      "userId": "user_f98750fe84e8"
+    },
+    {
+      "isMapVisible": true,
+      "isPrivateAccount": false,
+      "updatedAt": "2026-04-17T11:51:15.981Z",
+      "userId": "user_52893996df00"
+    },
+    {
+      "isMapVisible": true,
+      "isPrivateAccount": false,
+      "updatedAt": "2026-04-17T11:51:35.831Z",
+      "userId": "user_a54dd1969c58"
+    },
+    {
+      "isMapVisible": true,
+      "isPrivateAccount": false,
+      "updatedAt": "2026-04-20T14:44:58.737Z",
+      "userId": "user_9450c72934fd"
+    },
+    {
+      "isMapVisible": true,
+      "isPrivateAccount": false,
+      "updatedAt": "2026-04-20T14:45:16.653Z",
+      "userId": "user_6c689a170a37"
+    }
+  ],
+  "sessions": [
+    {
+      "createdAt": "2026-04-17T11:51:00.943Z",
+      "expiresAt": "2026-05-17T11:51:00.943Z",
+      "provider": "google",
+      "token": "a10a803baccee23f7c2dfbb1e0993acae299523fc79c2768",
+      "userId": "user_8aceaa8ae473"
+    },
+    {
+      "createdAt": "2026-04-17T11:51:00.964Z",
+      "expiresAt": "2026-05-17T11:51:00.964Z",
+      "provider": "google",
+      "token": "c412e1cea65c041b8719d52826c0e6f738876cabeb10908a",
+      "userId": "user_53b1efff5e34"
+    },
+    {
+      "createdAt": "2026-04-17T11:51:15.959Z",
+      "expiresAt": "2026-05-17T11:51:15.959Z",
+      "provider": "google",
+      "token": "a83d81d5e8251bca8f445e06a028ce15cadc7105b4ee1352",
+      "userId": "user_f98750fe84e8"
+    },
+    {
+      "createdAt": "2026-04-17T11:51:15.982Z",
+      "expiresAt": "2026-05-17T11:51:15.982Z",
+      "provider": "google",
+      "token": "0cece0e1c193782321a30fd90bcce9490035b5e8fe225867",
+      "userId": "user_52893996df00"
+    },
+    {
+      "createdAt": "2026-04-17T11:51:35.833Z",
+      "expiresAt": "2026-05-17T11:51:35.833Z",
+      "provider": "google",
+      "token": "c3ce675515fe3aae03abfa820910b34d22a120b4caddf80c",
+      "userId": "user_a54dd1969c58"
+    },
+    {
+      "createdAt": "2026-04-20T14:45:52.103Z",
+      "expiresAt": "2026-05-20T14:45:52.103Z",
+      "provider": "facebook",
+      "token": "300ec46fc1a13a7d6904df3f8d5c565ccc88c2a614ff4365",
+      "userId": "user_9450c72934fd"
+    }
+  ],
+  "streetFriends": [
+    {
+      "createdAt": "2026-04-17T11:51:16.155Z",
+      "id": "sf_187e57d1990f",
+      "status": "pending",
+      "userId1": "user_52893996df00",
+      "userId2": "user_f98750fe84e8"
+    }
+  ],
+  "users": [
+    {
+      "authProvider": "google",
+      "avatarUrl": "https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=200&q=80",
+      "bio": "wsa User sosyal giris ile katildi.",
+      "birthYear": 0,
+      "city": "Istanbul",
+      "createdAt": "2026-04-17T11:51:00.938Z",
+      "email": "wsa.1776426661388@macradar.app",
+      "favoriteCar": "",
+      "fullName": "wsa User",
+      "heroTagline": "",
+      "id": "user_8aceaa8ae473",
+      "isVerified": true,
+      "lastLoginAt": "2026-04-17T11:51:00.939Z",
+      "passwordHash": "",
+      "status": "active",
+      "username": "wsa26661388"
+    },
+    {
+      "authProvider": "google",
+      "avatarUrl": "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=200&q=80",
+      "bio": "wsb User sosyal giris ile katildi.",
+      "birthYear": 0,
+      "city": "Istanbul",
+      "createdAt": "2026-04-17T11:51:00.962Z",
+      "email": "wsb.1776426661807@macradar.app",
+      "favoriteCar": "",
+      "fullName": "wsb User",
+      "heroTagline": "",
+      "id": "user_53b1efff5e34",
+      "isVerified": true,
+      "lastLoginAt": "2026-04-17T11:51:00.962Z",
+      "passwordHash": "",
+      "status": "active",
+      "username": "wsb26661807"
+    },
+    {
+      "authProvider": "google",
+      "avatarUrl": "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=200&q=80",
+      "bio": "sta User sosyal giris ile katildi.",
+      "birthYear": 0,
+      "city": "Istanbul",
+      "createdAt": "2026-04-17T11:51:15.957Z",
+      "email": "sta.1776426676398@macradar.app",
+      "favoriteCar": "",
+      "fullName": "sta User",
+      "heroTagline": "",
+      "id": "user_f98750fe84e8",
+      "isVerified": true,
+      "lastLoginAt": "2026-04-17T11:51:15.958Z",
+      "passwordHash": "",
+      "status": "active",
+      "username": "sta26676398"
+    },
+    {
+      "authProvider": "google",
+      "avatarUrl": "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=200&q=80",
+      "bio": "stb User sosyal giris ile katildi.",
+      "birthYear": 0,
+      "city": "Istanbul",
+      "createdAt": "2026-04-17T11:51:15.981Z",
+      "email": "stb.1776426676711@macradar.app",
+      "favoriteCar": "",
+      "fullName": "stb User",
+      "heroTagline": "",
+      "id": "user_52893996df00",
+      "isVerified": true,
+      "lastLoginAt": "2026-04-17T11:51:15.981Z",
+      "passwordHash": "",
+      "status": "active",
+      "username": "stb26676711"
+    },
+    {
+      "authProvider": "google",
+      "avatarUrl": "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=200&q=80",
+      "bio": "Delete Alias User sosyal giris ile katildi.",
+      "birthYear": 0,
+      "city": "Istanbul",
+      "createdAt": "2026-04-17T11:51:35.831Z",
+      "email": "del.1776426695742@macradar.app",
+      "favoriteCar": "",
+      "fullName": "Delete Alias User",
+      "heroTagline": "",
+      "id": "user_a54dd1969c58",
+      "isVerified": true,
+      "lastLoginAt": "2026-04-17T11:51:35.831Z",
+      "passwordHash": "",
+      "status": "active",
+      "username": "del26695742"
+    },
+    {
+      "authProvider": "facebook",
+      "avatarUrl": "https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=200&q=80",
+      "bio": "Facebook Driver sosyal giris ile katildi.",
+      "birthYear": 0,
+      "city": "Istanbul",
+      "createdAt": "2026-04-20T14:44:58.736Z",
+      "email": "facebook.facebook.driver@macradar.app",
+      "favoriteCar": "",
+      "fullName": "Facebook Driver",
+      "heroTagline": "",
+      "id": "user_9450c72934fd",
+      "isVerified": true,
+      "lastLoginAt": "2026-04-20T14:45:55.033Z",
+      "passwordHash": "",
+      "status": "active",
+      "username": "facebookdriver"
+    },
+    {
+      "authProvider": "google",
+      "avatarUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80",
+      "bio": "Google Driver sosyal giris ile katildi.",
+      "birthYear": 0,
+      "city": "Istanbul",
+      "createdAt": "2026-04-20T14:45:16.653Z",
+      "email": "google.google.driver@macradar.app",
+      "favoriteCar": "",
+      "fullName": "Google Driver",
+      "heroTagline": "",
+      "id": "user_6c689a170a37",
+      "isVerified": true,
+      "lastLoginAt": "2026-04-20T14:45:16.653Z",
+      "passwordHash": "",
+      "status": "active",
+      "username": "googledriver"
+    }
+  ],
+  "verificationCodes": [],
+  "conversations": [],
+  "messages": [],
+  "voiceMessages": [],
+  "profilePostMediaFiles": [],
+  "conversationUserStates": [],
+  "chatRequests": [],
+  "commentEngagements": [],
+  "notifications": [
+    {
+      "actorAvatarUrl": "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=200&q=80",
+      "actorFullName": "stb User",
+      "actorId": "user_52893996df00",
+      "actorUsername": "stb26676711",
+      "body": "stb User sana Yakındakiler isteği gönderdi.",
+      "channel": "follow_requests",
+      "createdAt": "2026-04-17T11:51:16.155Z",
+      "fromUserId": "user_52893996df00",
+      "id": "notif_4e75a4bdecdb",
+      "isRead": false,
+      "metadata": {
+        "isPrivateAccount": false,
+        "requesterId": "user_52893996df00",
+        "status": "pending",
+        "targetId": "user_f98750fe84e8"
+      },
+      "recipientId": "user_f98750fe84e8",
+      "userId": "user_f98750fe84e8",
+      "title": "Yeni Yakındakiler isteği",
+      "type": "street_friend.request.created",
+      "updatedAt": "2026-04-17T11:51:16.155Z"
+    },
+    {
+      "actorAvatarUrl": "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=200&q=80",
+      "actorFullName": "wsb User",
+      "actorId": "user_53b1efff5e34",
+      "actorUsername": "wsb26661807",
+      "body": "wsb User sana takip isteği gönderdi.",
+      "channel": "follow_requests",
+      "createdAt": "2026-04-17T11:51:01.145Z",
+      "fromUserId": "user_53b1efff5e34",
+      "id": "notif_a1d0842777ad",
+      "isRead": false,
+      "metadata": {
+        "isPrivateAccount": true,
+        "requesterId": "user_53b1efff5e34",
+        "targetId": "user_8aceaa8ae473"
+      },
+      "recipientId": "user_8aceaa8ae473",
+      "userId": "user_8aceaa8ae473",
+      "title": "Yeni takip isteği",
+      "type": "follow.request.created",
+      "updatedAt": "2026-04-17T11:51:01.145Z"
+    }
+  ]
+}

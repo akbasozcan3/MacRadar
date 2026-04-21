@@ -1,0 +1,122 @@
+{
+  "appSettings": [
+    {
+      "gender": "prefer_not_to_say",
+      "language": "tr",
+      "licensePlate": "",
+      "notifyFollowRequests": true,
+      "notifyMessages": true,
+      "notifyPostLikes": true,
+      "showLicensePlate": false,
+      "updatedAt": "2026-03-23T10:51:46.862Z",
+      "userId": "user_97ec889030d5"
+    }
+  ],
+  "blockedUsers": [],
+  "comments": [],
+  "followRequests": [],
+  "follows": [],
+  "mapPreferences": [
+    {
+      "mapFilterMode": "street_friends",
+      "mapThemeMode": "dark",
+      "showLocalLayer": true,
+      "showRemoteLayer": true,
+      "trackingEnabled": false,
+      "updatedAt": "2026-03-23T10:51:46.862Z",
+      "userId": "user_97ec889030d5"
+    }
+  ],
+  "passwordResetCodes": [],
+  "playlists": {
+    "kesfet": {
+      "accentColor": "#1DB954",
+      "coverImageUrl": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=500&q=80",
+      "embedUrl": "https://open.spotify.com/embed/playlist/71bTdg4GvnVU0ME85qOtm5?utm_source=generator&theme=0",
+      "id": "playlist_discovery",
+      "openUrl": "https://open.spotify.com/playlist/71bTdg4GvnVU0ME85qOtm5",
+      "spotifyPlaylistId": "71bTdg4GvnVU0ME85qOtm5",
+      "subtitle": "Spotify playlist served by the local Node backend",
+      "theme": 0,
+      "title": "Road Radar: Discovery Mix"
+    },
+    "takipte": {
+      "accentColor": "#1DB954",
+      "coverImageUrl": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=500&q=80",
+      "embedUrl": "https://open.spotify.com/embed/playlist/71bTdg4GvnVU0ME85qOtm5?utm_source=generator&theme=0",
+      "id": "playlist_discovery",
+      "openUrl": "https://open.spotify.com/playlist/71bTdg4GvnVU0ME85qOtm5",
+      "spotifyPlaylistId": "71bTdg4GvnVU0ME85qOtm5",
+      "subtitle": "Spotify playlist served by the local Node backend",
+      "theme": 0,
+      "title": "Road Radar: Discovery Mix"
+    },
+    "sizin-icin": {
+      "accentColor": "#1DB954",
+      "coverImageUrl": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=500&q=80",
+      "embedUrl": "https://open.spotify.com/embed/playlist/71bTdg4GvnVU0ME85qOtm5?utm_source=generator&theme=0",
+      "id": "playlist_discovery",
+      "openUrl": "https://open.spotify.com/playlist/71bTdg4GvnVU0ME85qOtm5",
+      "spotifyPlaylistId": "71bTdg4GvnVU0ME85qOtm5",
+      "subtitle": "Spotify playlist served by the local Node backend",
+      "theme": 0,
+      "title": "Road Radar: Discovery Mix"
+    }
+  },
+  "postEngagements": [],
+  "posts": [],
+  "profilePosts": [],
+  "privacySettings": [
+    {
+      "isMapVisible": true,
+      "isPrivateAccount": false,
+      "updatedAt": "2026-03-23T10:51:46.862Z",
+      "userId": "user_97ec889030d5"
+    }
+  ],
+  "sessions": [
+    {
+      "createdAt": "2026-03-23T10:51:47.247Z",
+      "expiresAt": "2026-04-22T10:51:47.247Z",
+      "provider": "local",
+      "token": "a0ba64fcd791159ad908f42cb6d2be91003e9c36420799cb",
+      "userId": "user_97ec889030d5"
+    }
+  ],
+  "streetFriends": [],
+  "users": [
+    {
+      "authProvider": "local",
+      "avatarUrl": "",
+      "bio": "",
+      "birthYear": 0,
+      "city": "",
+      "createdAt": "2026-03-23T10:51:46.801Z",
+      "email": "ozcanakbas38@gmail.com",
+      "favoriteCar": "",
+      "fullName": "Ozcan Akbas",
+      "heroTagline": "Ozcan Akbas with premium route cards and synced profile.",
+      "id": "user_97ec889030d5",
+      "isVerified": true,
+      "lastLoginAt": "2026-03-23T10:51:47.245Z",
+      "passwordHash": "a5801c89a1c3513819030e373ccece64:431dedab369c38bb845ed3b12f98cdf530767807727fa6eb636f5e1d83843d0713793291f5df8a0b8e4297e476a6eb43fd17db8f68f26cdb76c97787a5f286fc",
+      "status": "active",
+      "username": "ozcanakb55"
+    }
+  ],
+  "verificationCodes": [
+    {
+      "attempts": 0,
+      "code": "443662",
+      "createdAt": "2026-03-23T10:51:46.862Z",
+      "email": "ozcanakbas38@gmail.com",
+      "expiresAt": "2026-03-23T11:01:46.862Z",
+      "id": "vcode_7494782ed47b",
+      "reason": "register",
+      "resendAvailableAt": "2026-03-23T10:52:46.862Z",
+      "used": true
+    }
+  ],
+  "conversations": [],
+  "messages": []
+}

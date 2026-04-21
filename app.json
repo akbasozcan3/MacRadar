@@ -1,0 +1,7 @@
+{
+  "name": "MacRadar",
+  "displayName": "MacRadar",
+  "plugins": [
+    "@notifee/react-native"
+  ]
+}

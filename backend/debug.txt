@@ -1,0 +1,1 @@
+{"error":{"code":"email_not_verified","details":{"email":"test_1773834615253@macradar.app","expiresAt":"2026-03-19T14:50:15.306411+03:00","resendAvailableAt":"2026-03-18T14:51:15.30672+03:00","status":"pending_verification"},"message":"Email adresinizi dogrulamadan giris yapamazsiniz."},"success":false}

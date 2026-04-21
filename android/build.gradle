@@ -1,0 +1,60 @@
+buildscript {
+    ext {
+        buildToolsVersion = "36.0.0"
+        minSdkVersion = 24
+        compileSdkVersion = 36
+        targetSdkVersion = 36
+        ndkVersion = "27.1.12297006"
+        kotlinVersion = "2.1.20"
+    }
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle")
+        classpath("com.facebook.react:react-native-gradle-plugin")
+        classpath("com.google.gms:google-services:4.4.2")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
+    }
+}
+
+// Mapbox indirme yetkisini buraya tanımlıyoruz
+def mapboxLocalProperties = new Properties()
+def mapboxLocalPropertiesFile = rootProject.file("local.properties")
+if (mapboxLocalPropertiesFile.exists()) {
+    mapboxLocalPropertiesFile.withInputStream { stream ->
+        mapboxLocalProperties.load(stream)
+    }
+}
+
+def mapboxDownloadsToken = providers.gradleProperty("MAPBOX_DOWNLOADS_TOKEN")
+    .orElse(providers.environmentVariable("MAPBOX_DOWNLOADS_TOKEN"))
+    .getOrElse(mapboxLocalProperties.getProperty("mapbox.downloadsToken", ""))
+    .trim()
+
+if (!mapboxDownloadsToken) {
+    throw new GradleException(
+        "Missing Mapbox downloads token. Set MAPBOX_DOWNLOADS_TOKEN in %USERPROFILE%/.gradle/gradle.properties, " +
+        "set the MAPBOX_DOWNLOADS_TOKEN environment variable, or add mapbox.downloadsToken to android/local.properties. " +
+        "The token must be a secret Mapbox token with Downloads:Read."
+    )
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url 'https://api.mapbox.com/downloads/v2/releases/maven'
+            authentication {
+                basic(BasicAuthentication)
+            }
+            credentials {
+                username = "mapbox"
+                password = mapboxDownloadsToken
+            }
+        }
+    }
+}
+apply plugin: "com.facebook.react.rootproject"

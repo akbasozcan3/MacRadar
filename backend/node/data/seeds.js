@@ -1,0 +1,65 @@
+module.exports = {
+  appSettings: [],
+  blockedUsers: [],
+  chatRequests: [],
+  comments: [],
+  conversationUserStates: [],
+  followRequests: [],
+  follows: [],
+  mapPreferences: [],
+  notifications: [],
+  passwordResetCodes: [],
+  playlists: {
+    kesfet: {
+      accentColor: '#1DB954',
+      coverImageUrl:
+        'https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=500&q=80',
+      embedUrl:
+        'https://open.spotify.com/embed/playlist/71bTdg4GvnVU0ME85qOtm5?utm_source=generator&theme=0',
+      id: 'playlist_discovery',
+      openUrl: 'https://open.spotify.com/playlist/71bTdg4GvnVU0ME85qOtm5',
+      spotifyPlaylistId: '71bTdg4GvnVU0ME85qOtm5',
+      subtitle: 'Spotify playlist served by the local Node backend',
+      theme: 0,
+      title: 'Road Radar: Discovery Mix',
+    },
+    takipte: {
+      accentColor: '#1DB954',
+      coverImageUrl:
+        'https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=500&q=80',
+      embedUrl:
+        'https://open.spotify.com/embed/playlist/71bTdg4GvnVU0ME85qOtm5?utm_source=generator&theme=0',
+      id: 'playlist_discovery',
+      openUrl: 'https://open.spotify.com/playlist/71bTdg4GvnVU0ME85qOtm5',
+      spotifyPlaylistId: '71bTdg4GvnVU0ME85qOtm5',
+      subtitle: 'Spotify playlist served by the local Node backend',
+      theme: 0,
+      title: 'Road Radar: Discovery Mix',
+    },
+    'sizin-icin': {
+      accentColor: '#1DB954',
+      coverImageUrl:
+        'https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=500&q=80',
+      embedUrl:
+        'https://open.spotify.com/embed/playlist/71bTdg4GvnVU0ME85qOtm5?utm_source=generator&theme=0',
+      id: 'playlist_discovery',
+      openUrl: 'https://open.spotify.com/playlist/71bTdg4GvnVU0ME85qOtm5',
+      spotifyPlaylistId: '71bTdg4GvnVU0ME85qOtm5',
+      subtitle: 'Spotify playlist served by the local Node backend',
+      theme: 0,
+      title: 'Road Radar: Discovery Mix',
+    },
+  },
+  postEngagements: [],
+  postReports: [],
+  userReports: [],
+  posts: [],
+  profilePosts: [],
+  profilePostMediaFiles: [],
+  privacySettings: [],
+  sessions: [],
+  streetFriends: [],
+  users: [],
+  voiceMessages: [],
+  verificationCodes: [],
+};

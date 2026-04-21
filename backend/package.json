@@ -1,0 +1,52 @@
+{
+  "name": "macradar-backend",
+  "private": true,
+  "scripts": {
+    "start": "node scripts/start-node-stack.js",
+    "start:node": "node node/server.js",
+    "build:go": "cd go && go build -o ../bin/go-server ./cmd/server",
+    "start:go": "node scripts/start-go.js",
+    "build:rust": "cd rust/sensor-hub && cargo build",
+    "start:rust": "node scripts/start-rust-sensor.js",
+    "start:voice": "cd voice-service && npm start",
+    "start:explore": "cd explore-service && npm start",
+    "start:feed": "cd feed-service && npm start",
+    "start:search": "cd search-service && npm start",
+    "install:voice": "cd voice-service && npm install",
+    "install:explore": "cd explore-service && npm install",
+    "install:feed": "cd feed-service && npm install",
+    "install:search": "cd search-service && npm install",
+    "start:all": "node scripts/start-stack.js --strict",
+    "build:all": "npm run build:go && npm run build:rust",
+    "clean": "node scripts/clean-backend-stack.js",
+    "start:fresh": "npm run clean && npm start",
+    "node": "node scripts/start-node-server.js",
+    "self-check:node": "node scripts/self-check-node-backend.js",
+    "go": "node scripts/start-go.js",
+    "rust:sensor": "node scripts/start-rust-sensor.js",
+    "test": "node scripts/test-go-auth-flow.js",
+    "test:profile": "node scripts/test-go-profile-settings.js",
+    "test:node": "node scripts/test-node-backend.js",
+    "test:go": "node scripts/test-go-backend.js",
+    "test:go:matrix": "node scripts/test-go-flow-matrix.js",
+    "test:go:unit": "node scripts/test-go-unit.js",
+    "test:feed": "node scripts/test-feed-service-core.js",
+    "test:messages:matrix": "node scripts/verify-messaging-camera-matrix.js",
+    "test:tabs": "node scripts/test-tab-backend-contracts.js",
+    "test:all": "node scripts/run-backend-test-suite.js",
+    "test:smtp": "node scripts/test-node-smtp.js",
+    "test:services": "node scripts/test-all-services.js",
+    "test:comprehensive": "node scripts/test-comprehensive-services.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "pg": "^8.20.0"
+  },
+  "dependencies": {
+    "@fastify/multipart": "^9.4.0",
+    "axios": "^1.6.0",
+    "express": "^5.2.1",
+    "fastify": "^5.8.4",
+    "ws": "^8.20.0"
+  }
+}

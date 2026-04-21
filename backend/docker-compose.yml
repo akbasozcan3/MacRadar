@@ -1,0 +1,61 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: macradar-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: macradar
+      POSTGRES_USER: macradar
+      POSTGRES_PASSWORD: macradar
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./migrations:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U macradar -d macradar']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # Go backend servisi — ana REST API + WebSocket (port 8090)
+  # Not: Docker dışında `npm run backend:dev` ile de başlatılabilir.
+  # go-backend:
+  #   build:
+  #     context: ./go
+  #     dockerfile: Dockerfile
+  #   container_name: macradar-go
+  #   restart: unless-stopped
+  #   env_file: .env
+  #   ports:
+  #     - '8090:8090'
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+
+  # Node.js yardımcı servis (port 8091)
+  # node-backend:
+  #   build:
+  #     context: ./node
+  #     dockerfile: Dockerfile
+  #   container_name: macradar-node
+  #   restart: unless-stopped
+  #   env_file: .env
+  #   ports:
+  #     - '8091:8091'
+  #   depends_on:
+  #     - postgres
+
+  # Rust sensor-hub (port 8181) — IMU/sensör WebSocket köprüsü
+  # rust-sensor:
+  #   build:
+  #     context: ./rust/sensor-hub
+  #     dockerfile: Dockerfile
+  #   container_name: macradar-rust-sensor
+  #   restart: unless-stopped
+  #   ports:
+  #     - '8181:8181'
+
+volumes:
+  postgres_data:
+

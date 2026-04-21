@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "112430380576",
+    "project_id": "macradar-7fb4a",
+    "storage_bucket": "macradar-7fb4a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:112430380576:android:d76e53b8d05935ce43ae45",
+        "android_client_info": {
+          "package_name": "com.macradar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "112430380576-1s4htkhf9j58fcqheva1vprshcstnr0u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBClfIvmHehakFNWmBtkPXvJvf6_gOBmNk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "112430380576-1s4htkhf9j58fcqheva1vprshcstnr0u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
