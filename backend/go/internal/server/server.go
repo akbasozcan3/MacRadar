@@ -785,6 +785,15 @@ func (s *Server) handleWebSocket(w http.ResponseWriter, r *http.Request) {
 
 func (s *Server) withMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// Render (and some proxies) occasionally append trailing whitespace to the
+		// configured health-check path; stdlib ServeMux matches literally, so normalize.
+		if trimmed := strings.TrimSpace(r.URL.Path); trimmed != r.URL.Path {
+			u := *r.URL
+			u.Path = trimmed
+			r = r.Clone(r.Context())
+			r.URL = &u
+		}
+
 		startedAt := time.Now()
 		requestID := requestIDFromHeader(r)
 		requestLanguage := s.resolveRequestLanguage(r)
