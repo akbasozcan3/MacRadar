@@ -7,6 +7,7 @@ export type GeneratedAppEnv = {
   apiBaseUrl: string | null;
   apiPort: string | null;
   mapboxPublicToken: string | null;
+  sensorWsUrl: string | null;
   wsBaseUrl: string | null;
 };
 
@@ -14,5 +15,6 @@ export const APP_ENV: GeneratedAppEnv = {
   apiBaseUrl: null,
   apiPort: "8090",
   mapboxPublicToken: "pk.eyJ1IjoibWFjcmFkYXIiLCJhIjoiY2x0ZXN0MTIzIn0.test_token_placeholder",
+  sensorWsUrl: null,
   wsBaseUrl: null,
 };

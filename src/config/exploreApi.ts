@@ -3,6 +3,7 @@ import { APP_ENV } from './appEnv.generated';
 
 const DEFAULT_API_PORT = 8090;
 const PRODUCTION_API_BASE_URL = 'https://macradar.onrender.com';
+const PRODUCTION_SENSOR_WS_URL = 'wss://macradar-rust-sensor.onrender.com/ws/sensors';
 
 // Android emulators cannot reach localhost directly, so use 10.0.2.2 there.
 const LOCAL_API_HOST = Platform.select({
@@ -60,6 +61,24 @@ function normalizeBaseUrl(rawValue: string | null, expected: 'http' | 'ws') {
   }
 }
 
+function normalizeWsUrl(rawValue: string | null) {
+  if (!rawValue) {
+    return null;
+  }
+
+  try {
+    const parsed = new URL(rawValue);
+    const protocol = parsed.protocol.toLowerCase();
+    if (protocol !== 'ws:' && protocol !== 'wss:') {
+      return null;
+    }
+
+    return parsed.toString().replace(/\/$/, '');
+  } catch {
+    return null;
+  }
+}
+
 function parsePort(rawValue: string | null) {
   if (!rawValue) {
     return DEFAULT_API_PORT;
@@ -87,6 +106,7 @@ const configuredWsBaseUrl = normalizeBaseUrl(
   sanitizeEnvValue(APP_ENV.wsBaseUrl),
   'ws',
 );
+const configuredSensorWsUrl = normalizeWsUrl(sanitizeEnvValue(APP_ENV.sensorWsUrl));
 const configuredMapboxPublicToken = sanitizeEnvValue(APP_ENV.mapboxPublicToken);
 const configuredPort = parsePort(sanitizeEnvValue(APP_ENV.apiPort));
 
@@ -104,8 +124,12 @@ export const API_BASE_URL = API_BASE_URL_CANDIDATES[0] ?? fallbackApiBaseUrl;
 export const EXPLORE_API_BASE_URL = API_BASE_URL;
 export const MAPBOX_PUBLIC_TOKEN = configuredMapboxPublicToken;
 const WS_BASE_URL = configuredWsBaseUrl ?? deriveWsBaseUrl(API_BASE_URL);
+const SENSOR_WS_URL_FALLBACK = __DEV__
+  ? `${WS_BASE_URL}/ws/sensors`
+  : PRODUCTION_SENSOR_WS_URL;
 
 export const EXPLORE_WS_URL = `${WS_BASE_URL}/ws/explore`;
 export const MESSAGES_WS_URL = `${WS_BASE_URL}/ws/messages`;
 export const NOTIFICATIONS_WS_URL = `${WS_BASE_URL}/ws/notifications`;
 export const PLAYER_WS_URL = `${WS_BASE_URL}/ws/players`;
+export const SENSOR_WS_URL = configuredSensorWsUrl ?? SENSOR_WS_URL_FALLBACK;

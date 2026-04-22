@@ -7,6 +7,7 @@ The app now supports environment-driven backend URLs.
 - `MACRADAR_API_BASE_URL`: HTTP/HTTPS API base URL (example: `https://api.example.com`)
 - `MACRADAR_API_PORT`: Optional fallback port for local development (`8090` by default)
 - `MACRADAR_WS_BASE_URL`: Optional explicit WebSocket base URL (example: `wss://api.example.com`)
+- `MACRADAR_SENSOR_WS_URL`: Optional dedicated sensor WebSocket endpoint (example: `wss://macradar-rust-sensor.onrender.com/ws/sensors`)
 
 If `MACRADAR_WS_BASE_URL` is empty, WebSocket URLs are derived from `MACRADAR_API_BASE_URL`.
 
