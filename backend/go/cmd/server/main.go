@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"strings"
 	"syscall"
 	"time"
 
@@ -23,6 +24,11 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/redis/go-redis/v9"
 )
+
+func shouldSkipMigrations() bool {
+	raw := strings.TrimSpace(strings.ToLower(os.Getenv("SKIP_MIGRATIONS")))
+	return raw == "1" || raw == "true" || raw == "yes" || raw == "on"
+}
 
 func main() {
 	cfg := config.Load()
@@ -62,9 +68,13 @@ func main() {
 		os.Exit(1)
 	}
 
-	if err := migrate.Run(startupCtx, pool, logger, cfg.MigrationsDir); err != nil {
-		logger.Error("database migration failed", slog.Any("error", err))
-		os.Exit(1)
+	if shouldSkipMigrations() {
+		logger.Info("database migrations skipped", slog.String("reason", "SKIP_MIGRATIONS is enabled"))
+	} else {
+		if err := migrate.Run(startupCtx, pool, logger, cfg.MigrationsDir); err != nil {
+			logger.Error("database migration failed", slog.Any("error", err))
+			os.Exit(1)
+		}
 	}
 
 	accountRepo := account.NewRepository(pool)

@@ -2,6 +2,7 @@ const { spawn } = require('node:child_process');
 const { spawnSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
+require('./load-backend-env');
 const { buildGoEnv } = require('./go-env');
 
 const root = path.resolve(__dirname, '..', '..');

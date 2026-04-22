@@ -3,6 +3,7 @@ const { Buffer } = require('node:buffer');
 const { spawn, spawnSync } = require('node:child_process');
 const { readFileSync, existsSync, mkdirSync } = require('node:fs');
 const path = require('node:path');
+require('./load-backend-env');
 const { buildGoEnv } = require('./go-env');
 const { withStartupStep, printStartupReport } = require('./startup-report');
 const { ensureGoExploreSeed } = require('./ensure-go-explore-seed');
@@ -21,12 +22,27 @@ function setDefaultEnv(key, value) {
   }
 }
 
+function enforceStrictEnv(key, value) {
+  const current = process.env[key];
+  if (current == null || String(current).trim().length === 0) {
+    process.env[key] = value;
+    strictDefaultsApplied.push(`${key}=${value}`);
+    return;
+  }
+
+  if (String(current).trim() !== value) {
+    process.env[key] = value;
+    strictDefaultsApplied.push(`${key}=${value} (forced)`);
+  }
+}
+
 if (STRICT_MODE) {
   setDefaultEnv('AUTH_DEBUG_PREVIEW', 'false');
   setDefaultEnv('DB_MAX_CONNS', '24');
   setDefaultEnv('DB_MIN_CONNS', '4');
-  setDefaultEnv('GO_ENABLE_NODE_FALLBACK', '0');
-  setDefaultEnv('START_NODE_BACKEND', '0');
+  enforceStrictEnv('GO_ENABLE_NODE_FALLBACK', '0');
+  enforceStrictEnv('START_NODE_BACKEND', '0');
+  enforceStrictEnv('START_RUST_SENSOR_NODE_FALLBACK', '0');
   setDefaultEnv('RUST_SENSOR_BRIDGE_ENABLED', 'true');
   setDefaultEnv('RUST_SENSOR_BRIDGE_HANDSHAKE_TIMEOUT', '3s');
   setDefaultEnv('RUST_SENSOR_BRIDGE_RECONNECT_DELAY', '750ms');
@@ -641,8 +657,14 @@ async function ensureRustSensor() {
 
   const shouldStartRust = isTruthy(process.env.START_RUST_SENSOR_BACKEND, true);
   if (!shouldStartRust) {
+    const configuredSensorWsUrl = String(process.env.RUST_SENSOR_WS_URL || '').trim();
     if (STRICT_MODE) {
-      throw strictError('START_RUST_SENSOR_BACKEND=0 strict modda desteklenmiyor');
+      if (!configuredSensorWsUrl) {
+        throw strictError(
+          'START_RUST_SENSOR_BACKEND=0 icin RUST_SENSOR_WS_URL zorunlu (remote rust sensor domain verilmeli)',
+        );
+      }
+      return `skipped (remote rust sensor: ${configuredSensorWsUrl})`;
     }
     const startedFallback = await startRustSensorNodeFallback(
       'START_RUST_SENSOR_BACKEND=0',
