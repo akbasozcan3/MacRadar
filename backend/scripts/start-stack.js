@@ -25,7 +25,8 @@ if (STRICT_MODE) {
   setDefaultEnv('AUTH_DEBUG_PREVIEW', 'false');
   setDefaultEnv('DB_MAX_CONNS', '24');
   setDefaultEnv('DB_MIN_CONNS', '4');
-  setDefaultEnv('GO_ENABLE_NODE_FALLBACK', '1');
+  setDefaultEnv('GO_ENABLE_NODE_FALLBACK', '0');
+  setDefaultEnv('START_NODE_BACKEND', '0');
   setDefaultEnv('RUST_SENSOR_BRIDGE_ENABLED', 'true');
   setDefaultEnv('RUST_SENSOR_BRIDGE_HANDSHAKE_TIMEOUT', '3s');
   setDefaultEnv('RUST_SENSOR_BRIDGE_RECONNECT_DELAY', '750ms');
@@ -741,7 +742,7 @@ async function ensureGoBackend() {
         GO_FORCE_GO_RUN:
           process.env.GO_FORCE_GO_RUN || '0',
         GO_ENABLE_NODE_FALLBACK:
-          process.env.GO_ENABLE_NODE_FALLBACK || '1',
+          process.env.GO_ENABLE_NODE_FALLBACK || '0',
         RUST_SENSOR_BRIDGE_ENABLED:
           process.env.RUST_SENSOR_BRIDGE_ENABLED || 'true',
         RUST_SENSOR_WS_URL:

@@ -86,7 +86,7 @@ const allowGoRunFallback =
 const enableNodeGoFallback =
   process.platform === 'win32'
     ? process.env.GO_ENABLE_NODE_FALLBACK == null
-      ? true
+      ? false
       : isTruthy(process.env.GO_ENABLE_NODE_FALLBACK)
     : isTruthy(process.env.GO_ENABLE_NODE_FALLBACK);
 const preferPrebuiltBinary = !forceGoRun && (

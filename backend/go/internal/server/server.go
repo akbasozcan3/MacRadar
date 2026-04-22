@@ -46,6 +46,7 @@ type Server struct {
 	requestEventDedupeMu sync.Mutex
 	rateLimiter      *requestRateLimiter
 	repo             *explore.Repository
+	searchPadding    *searchPaddingEngine
 	sensorBridge     *sensors.Bridge
 	sensorHub        *sensors.Hub
 	upgrader         websocket.Upgrader
@@ -124,6 +125,7 @@ func New(
 		requestEventDedupe:  make(map[string]time.Time),
 		rateLimiter:         newRequestRateLimiter(time.Now),
 		repo:                repo,
+		searchPadding:       newSearchPaddingEngine(),
 		sensorBridge:        sensorBridge,
 		sensorHub:           sensorHub,
 		voiceFiles:          make(map[string]voiceFileRecord),
@@ -152,6 +154,40 @@ func (s *Server) Routes() http.Handler {
 	mux.HandleFunc("GET /api/v1/meta/country-calling-codes", s.handleCountryCallingCodes)
 	mux.HandleFunc("GET /api/v1/app/i18n", s.handleAppI18n)
 	mux.HandleFunc("GET /api/v1/app/overview", s.handleOverview)
+	mux.HandleFunc("GET /api/v1/feed", s.handleLegacyFeed)
+	mux.HandleFunc("POST /api/v1/feed/users", s.handleLegacyFeedCreateUser)
+	mux.HandleFunc("POST /api/v1/feed/users/{userID}/follow", s.handleLegacyFeedFollow)
+	mux.HandleFunc("POST /api/v1/feed/users/{userID}/unfollow", s.handleLegacyFeedUnfollow)
+	mux.HandleFunc("POST /api/v1/feed/users/{userID}/block", s.handleLegacyFeedBlock)
+	mux.HandleFunc("POST /api/v1/feed/users/{userID}/unblock", s.handleLegacyFeedUnblock)
+	mux.HandleFunc("POST /api/v1/feed/posts", s.handleLegacyFeedCreatePost)
+	mux.HandleFunc("POST /api/v1/feed/posts/{postID}/like", s.handleLegacyFeedLike)
+	mux.HandleFunc("POST /api/v1/feed/posts/{postID}/unlike", s.handleLegacyFeedUnlike)
+	mux.HandleFunc("POST /api/v1/feed/posts/{postID}/save", s.handleLegacyFeedSave)
+	mux.HandleFunc("POST /api/v1/feed/posts/{postID}/unsave", s.handleLegacyFeedUnsave)
+	mux.HandleFunc("GET /api/v1/feed/posts/{postID}/comments", s.handleLegacyFeedComments)
+	mux.HandleFunc("POST /api/v1/feed/posts/{postID}/comments", s.handleLegacyFeedCreateComment)
+	mux.HandleFunc("POST /api/v1/feed/stories", s.handleLegacyFeedStories)
+	mux.HandleFunc("GET /api/v1/feed/users/{userID}/stories", s.handleLegacyFeedStories)
+	mux.HandleFunc("POST /api/v1/feed/stories/{storyID}/view", s.handleLegacyFeedStories)
+	mux.HandleFunc("GET /api/v1/feed/notifications", s.handleLegacyFeedNotifications)
+	mux.HandleFunc("POST /api/v1/feed/notifications/{notificationID}/read", s.handleLegacyFeedReadNotification)
+	mux.HandleFunc("POST /api/v1/feed/notifications/read-all", s.handleLegacyFeedReadAllNotifications)
+	mux.HandleFunc("GET /api/v1/feed/analytics", s.handleLegacyFeedAnalytics)
+	mux.HandleFunc("GET /api/v1/explore/search", s.handleLegacyExploreSearch)
+	mux.HandleFunc("GET /api/v1/explore/trending", s.handleLegacyExploreTrending)
+	mux.HandleFunc("POST /api/v1/explore/posts", s.handleLegacyExploreCreatePost)
+	mux.HandleFunc("POST /api/v1/explore/posts/{postID}/interact", s.handleLegacyExploreInteract)
+	mux.HandleFunc("GET /api/v1/explore/categories", s.handleLegacyExploreCategories)
+	mux.HandleFunc("GET /api/v1/explore/analytics", s.handleLegacyExploreAnalytics)
+	mux.HandleFunc("POST /api/v1/voice/upload", s.handleLegacyVoiceUpload)
+	mux.HandleFunc("GET /api/v1/voice/file/{filename}", s.handleLegacyVoiceFile)
+	mux.HandleFunc("DELETE /api/v1/voice/file/{filename}", s.handleLegacyVoiceDelete)
+	mux.HandleFunc("GET /api/v1/voice/list", s.handleLegacyVoiceList)
+	mux.HandleFunc("POST /api/v1/search", s.handleProfessionalSearch)
+	mux.HandleFunc("GET /api/v1/search/strategies", s.handleSearchStrategies)
+	mux.HandleFunc("GET /api/v1/search/analytics", s.handleSearchAnalytics)
+	mux.HandleFunc("GET /api/v1/search/users/{userID}/analytics", s.handleSearchUserAnalytics)
 	mux.HandleFunc("GET /api/v1/username/check", s.handleUsernameCheck)
 	mux.HandleFunc("POST /api/v1/auth/register", s.handleRegister)
 	mux.HandleFunc("POST /api/v1/auth/login", s.handleLogin)
@@ -253,9 +289,13 @@ func (s *Server) Routes() http.Handler {
 	mux.HandleFunc("PATCH /api/v1/messages/conversations/{conversationID}/mute", s.handleSetConversationMuted)
 	mux.HandleFunc("POST /api/v1/messages/conversations/{conversationID}/messages", s.handleSendConversationMessage)
 	mux.HandleFunc("POST /api/v1/messages/conversations/{conversationID}/voice", s.handleSendConversationVoiceMessage)
+	mux.HandleFunc("POST /api/v1/messages/conversations/{conversationID}/typing", s.handleLegacyMessagesTyping)
+	mux.HandleFunc("POST /api/v1/messages/conversations/{conversationID}/attachments", s.handleLegacyMessagesAttachments)
 	mux.HandleFunc("POST /api/v1/messages/conversations/{conversationID}/read", s.handleMarkConversationRead)
 	mux.HandleFunc("POST /api/v1/messages/conversations/{conversationID}/request/accept", s.handleAcceptConversationRequest)
 	mux.HandleFunc("POST /api/v1/messages/conversations/{conversationID}/request/reject", s.handleRejectConversationRequest)
+	mux.HandleFunc("POST /api/v1/messages/users/{userID}/block", s.handleLegacyMessagesBlockUser)
+	mux.HandleFunc("POST /api/v1/messages/users/{userID}/unblock", s.handleLegacyMessagesUnblockUser)
 	mux.HandleFunc("POST /api/v1/messages/voice/upload", s.handleUploadVoiceMessage)
 	mux.HandleFunc("GET /api/v1/messages/voice/files/{voiceMessageID}", s.handleVoiceMessageFile)
 	mux.HandleFunc("GET /ws/explore", s.handleWebSocket)
