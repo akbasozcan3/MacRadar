@@ -10,6 +10,7 @@ import {
   ScrollView,
   StatusBar,
   StyleSheet,
+  Text as RNText,
   TextInput,
   View,
 } from 'react-native';
@@ -546,29 +547,41 @@ export default function ProfileEditModalContent({
               <Text allowFontScaling={false} style={styles.fieldMicroLabel}>
                 {translateText('Cinsiyet')}
               </Text>
-              <Pressable
-                accessibilityLabel={translateText('Cinsiyet')}
-                onPress={() => setGenderSheetVisible(true)}
-                className="rounded-full border border-slate-200 bg-slate-100 px-4"
-                style={({ pressed }) => [
-                  styles.stadiumInput,
-                  styles.rowBetween,
-                  pressed ? styles.pressedOpacity : null,
-                ]}
+              <View
+                style={{
+                  alignSelf: 'stretch',
+                  backgroundColor: '#FFD7C2',
+                  borderColor: '#FF9A6B',
+                  borderRadius: PILL_RADIUS,
+                  borderWidth: 2,
+                  minHeight: 50,
+                  width: '100%',
+                }}
               >
-                <Text
-                  allowFontScaling={false}
-                  numberOfLines={1}
-                  style={styles.inputLikeText}
+                <Pressable
+                  accessibilityLabel={translateText('Cinsiyet')}
+                  onPress={() => setGenderSheetVisible(true)}
+                  style={({ pressed }) => ({
+                    justifyContent: 'center',
+                    minHeight: 50,
+                    opacity: pressed ? 0.88 : 1,
+                    paddingLeft: 16,
+                    paddingRight: 40,
+                    position: 'relative',
+                  })}
                 >
-                  {genderLabel(editGender)}
-                </Text>
-                <FeatherIcon
-                  color={PLACEHOLDER_COLOR}
-                  name="chevron-down"
-                  size={20}
-                />
-              </Pressable>
+                  <Text
+                    allowFontScaling={false}
+                    numberOfLines={1}
+                    style={styles.genderTriggerText}
+                  >
+                    {genderLabel(editGender)}
+                  </Text>
+                  <View style={styles.genderTriggerChevronWrap}>
+                    <FeatherIcon color="#94A3B8" name="chevron-down" size={17} />
+                  </View>
+                </Pressable>
+              </View>
             </View>
 
             <View style={styles.fieldBlock}>
@@ -777,49 +790,63 @@ export default function ProfileEditModalContent({
             ]}
           >
             <View style={styles.sheetGrabber} />
-            <Text allowFontScaling={false} style={styles.sheetTitle}>
+            <RNText
+              allowFontScaling={false}
+              style={styles.sheetTitleMain}
+            >
               {translateText('Cinsiyet')}
-            </Text>
-            <View style={styles.sheetRowsWrap}>
+            </RNText>
+            <RNText
+              allowFontScaling={false}
+              style={styles.sheetSubtitle}
+            >
+              {translateText('Profil görünürlüğün için bir seçenek belirleyin')}
+            </RNText>
+            <ScrollView
+              keyboardShouldPersistTaps="handled"
+              showsVerticalScrollIndicator={false}
+              style={styles.genderOptionsScroll}
+              contentContainerStyle={styles.genderOptionsList}
+            >
               {GENDER_OPTIONS.map(opt => (
                 <Pressable
                   key={opt}
+                  android_ripple={{ color: 'rgba(255, 99, 46, 0.10)' }}
                   onPress={() => {
                     setEditGender(opt);
                     setGenderSheetVisible(false);
                   }}
-                  style={({ pressed }) => [
-                    styles.sheetRow,
-                    editGender === opt ? styles.sheetRowActive : null,
-                    pressed ? styles.pressedOpacity : null,
+                  style={[
+                    styles.genderSimpleRow,
+                    editGender === opt ? styles.genderSimpleRowActive : null,
                   ]}
                 >
-                  <View style={styles.sheetRowLeft}>
+                  <View style={styles.genderSimpleLeft}>
+                    <RNText
+                      allowFontScaling={false}
+                      style={[
+                        styles.genderSimpleLabel,
+                        editGender === opt ? styles.genderSimpleLabelActive : null,
+                      ]}
+                    >
+                      {genderLabel(opt)}
+                    </RNText>
+                  </View>
+                  <View style={styles.genderSimpleCheckWrap}>
                     <View
                       style={[
-                        styles.sheetRowIndicator,
-                        editGender === opt ? styles.sheetRowIndicatorActive : null,
+                        styles.genderSimpleCheckCircle,
+                        editGender === opt ? styles.genderSimpleCheckCircleActive : null,
                       ]}
                     >
                       {editGender === opt ? (
-                        <View style={styles.sheetRowIndicatorDot} />
+                        <FeatherIcon color="#ffffff" name="check" size={11} />
                       ) : null}
                     </View>
-                    <Text
-                      allowFontScaling={false}
-                      style={styles.sheetRowLabel}
-                    >
-                      {genderLabel(opt)}
-                    </Text>
-                  </View>
-                  <View style={styles.sheetRowCheckSlot}>
-                    {editGender === opt ? (
-                      <FeatherIcon color={ORANGE} name="check" size={18} />
-                    ) : null}
                   </View>
                 </Pressable>
               ))}
-            </View>
+            </ScrollView>
           </View>
         </View>
       </Modal>
@@ -1104,6 +1131,39 @@ const styles = StyleSheet.create({
   fieldBlockLast: {
     marginBottom: 0,
   },
+  genderTrigger: {
+    alignSelf: 'stretch',
+    alignItems: 'flex-start',
+    backgroundColor: '#FFD7C2',
+    borderColor: '#FF9A6B',
+    borderRadius: PILL_RADIUS,
+    borderWidth: 2,
+    justifyContent: 'center',
+    minHeight: 50,
+    paddingLeft: 16,
+    paddingRight: 40,
+    position: 'relative',
+    shadowColor: '#FF9A6B',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.18,
+    shadowRadius: 6,
+    width: '100%',
+  },
+  genderTriggerChevronWrap: {
+    alignItems: 'center',
+    bottom: 0,
+    justifyContent: 'center',
+    position: 'absolute',
+    right: 12,
+    top: 0,
+    width: 20,
+  },
+  genderTriggerText: {
+    color: TEXT_PRIMARY,
+    fontSize: 14.5,
+    fontWeight: '500',
+    width: '100%',
+  },
   flagEmoji: {
     fontSize: 20,
     marginRight: 6,
@@ -1360,11 +1420,12 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     borderTopWidth: 1,
-    elevation: 16,
+    elevation: 20,
     marginHorizontal: 0,
     maxHeight: '72%',
     overflow: 'hidden',
-    paddingTop: 6,
+    paddingHorizontal: 16,
+    paddingTop: 8,
     shadowColor: '#000000',
     shadowOffset: { width: 0, height: -4 },
     shadowOpacity: 0.12,
@@ -1375,14 +1436,19 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: '#D1D5DB',
     borderRadius: 3,
-    height: 4,
-    marginBottom: 8,
-    marginTop: 8,
+    height: 5,
+    marginBottom: 10,
+    marginTop: 6,
     width: 42,
   },
-  sheetRowsWrap: {
-    paddingHorizontal: 14,
-    paddingTop: 2,
+  genderOptionsList: {
+    gap: 8,
+    paddingBottom: 6,
+    width: '100%',
+  },
+  genderOptionsScroll: {
+    maxHeight: 260,
+    width: '100%',
   },
   sheetRow: {
     alignItems: 'center',
@@ -1444,6 +1510,70 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     paddingTop: 8,
     textAlign: 'center',
+  },
+  sheetTitleMain: {
+    color: '#0F172A',
+    fontSize: 18,
+    fontWeight: '700',
+    paddingBottom: 2,
+    textAlign: 'center',
+  },
+  sheetSubtitle: {
+    color: '#64748B',
+    fontSize: 12.5,
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  genderSimpleCheckCircle: {
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    borderColor: '#CBD5E1',
+    borderRadius: 999,
+    borderWidth: 1.5,
+    height: 20,
+    justifyContent: 'center',
+    width: 20,
+  },
+  genderSimpleCheckCircleActive: {
+    backgroundColor: ORANGE,
+    borderColor: ORANGE,
+  },
+  genderSimpleCheckWrap: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 24,
+  },
+  genderSimpleLabel: {
+    color: '#334155',
+    fontSize: 15,
+    fontWeight: '600',
+  },
+  genderSimpleLabelActive: {
+    color: '#0F172A',
+  },
+  genderSimpleLeft: {
+    flex: 1,
+    justifyContent: 'center',
+    minWidth: 0,
+  },
+  genderSimpleRow: {
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    backgroundColor: '#F8FAFC',
+    borderColor: '#E2E8F0',
+    borderRadius: 16,
+    borderWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 8,
+    minHeight: 52,
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+    width: '100%',
+  },
+  genderSimpleRowActive: {
+    backgroundColor: '#FFF7ED',
+    borderColor: '#FDBA74',
   },
   stadiumInput: {
     backgroundColor: INPUT_BG,
