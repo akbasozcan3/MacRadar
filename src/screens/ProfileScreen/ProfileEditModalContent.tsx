@@ -754,10 +754,17 @@ export default function ProfileEditModalContent({
 
       <Modal
         animationType="fade"
+        statusBarTranslucent
         transparent
         visible={genderSheetVisible}
         onRequestClose={() => setGenderSheetVisible(false)}
       >
+        <StatusBar
+          animated
+          backgroundColor="transparent"
+          barStyle="dark-content"
+          translucent
+        />
         <View style={styles.sheetBackdrop}>
           <Pressable
             onPress={() => setGenderSheetVisible(false)}
@@ -773,44 +780,46 @@ export default function ProfileEditModalContent({
             <Text allowFontScaling={false} style={styles.sheetTitle}>
               {translateText('Cinsiyet')}
             </Text>
-            {GENDER_OPTIONS.map(opt => (
-              <Pressable
-                key={opt}
-                onPress={() => {
-                  setEditGender(opt);
-                  setGenderSheetVisible(false);
-                }}
-                style={({ pressed }) => [
-                  styles.sheetRow,
-                  editGender === opt ? styles.sheetRowActive : null,
-                  pressed ? styles.pressedOpacity : null,
-                ]}
-              >
-                <View style={styles.sheetRowLeft}>
-                  <View
-                    style={[
-                      styles.sheetRowIndicator,
-                      editGender === opt ? styles.sheetRowIndicatorActive : null,
-                    ]}
-                  >
+            <View style={styles.sheetRowsWrap}>
+              {GENDER_OPTIONS.map(opt => (
+                <Pressable
+                  key={opt}
+                  onPress={() => {
+                    setEditGender(opt);
+                    setGenderSheetVisible(false);
+                  }}
+                  style={({ pressed }) => [
+                    styles.sheetRow,
+                    editGender === opt ? styles.sheetRowActive : null,
+                    pressed ? styles.pressedOpacity : null,
+                  ]}
+                >
+                  <View style={styles.sheetRowLeft}>
+                    <View
+                      style={[
+                        styles.sheetRowIndicator,
+                        editGender === opt ? styles.sheetRowIndicatorActive : null,
+                      ]}
+                    >
+                      {editGender === opt ? (
+                        <View style={styles.sheetRowIndicatorDot} />
+                      ) : null}
+                    </View>
+                    <Text
+                      allowFontScaling={false}
+                      style={styles.sheetRowLabel}
+                    >
+                      {genderLabel(opt)}
+                    </Text>
+                  </View>
+                  <View style={styles.sheetRowCheckSlot}>
                     {editGender === opt ? (
-                      <View style={styles.sheetRowIndicatorDot} />
+                      <FeatherIcon color={ORANGE} name="check" size={18} />
                     ) : null}
                   </View>
-                  <Text
-                    allowFontScaling={false}
-                    style={styles.sheetRowLabel}
-                  >
-                    {genderLabel(opt)}
-                  </Text>
-                </View>
-                <View style={styles.sheetRowCheckSlot}>
-                  {editGender === opt ? (
-                    <FeatherIcon color={ORANGE} name="check" size={18} />
-                  ) : null}
-                </View>
-              </Pressable>
-            ))}
+                </Pressable>
+              ))}
+            </View>
           </View>
         </View>
       </Modal>
@@ -1343,17 +1352,19 @@ const styles = StyleSheet.create({
   },
   sheetBackdropFill: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.45)',
+    backgroundColor: 'rgba(15, 23, 42, 0.42)',
   },
   sheetCard: {
     backgroundColor: '#FFFFFF',
-    borderTopLeftRadius: 24,
-    borderTopRightRadius: 24,
+    borderColor: '#E5E7EB',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    borderTopWidth: 1,
     elevation: 16,
     marginHorizontal: 0,
     maxHeight: '72%',
     overflow: 'hidden',
-    paddingTop: 8,
+    paddingTop: 6,
     shadowColor: '#000000',
     shadowOffset: { width: 0, height: -4 },
     shadowOpacity: 0.12,
@@ -1365,52 +1376,60 @@ const styles = StyleSheet.create({
     backgroundColor: '#D1D5DB',
     borderRadius: 3,
     height: 4,
-    marginBottom: 10,
+    marginBottom: 8,
     marginTop: 8,
-    width: 36,
+    width: 42,
+  },
+  sheetRowsWrap: {
+    paddingHorizontal: 14,
+    paddingTop: 2,
   },
   sheetRow: {
     alignItems: 'center',
-    borderBottomColor: '#F3F4F6',
-    borderBottomWidth: StyleSheet.hairlineWidth,
+    backgroundColor: '#F8FAFC',
+    borderColor: '#E2E8F0',
+    borderRadius: 16,
+    borderWidth: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    minHeight: 54,
-    paddingHorizontal: 18,
-    paddingVertical: 12,
+    marginBottom: 8,
+    minHeight: 56,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
   },
   sheetRowActive: {
-    backgroundColor: 'rgba(255, 99, 46, 0.08)',
+    backgroundColor: '#FFF7ED',
+    borderColor: '#FDBA74',
   },
   sheetRowCheckSlot: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 22,
+    width: 24,
   },
   sheetRowIndicator: {
     alignItems: 'center',
     borderColor: '#CBD5E1',
-    borderRadius: 8,
+    borderRadius: 10,
     borderWidth: 1.5,
-    height: 16,
+    height: 20,
     justifyContent: 'center',
-    marginRight: 10,
-    width: 16,
+    marginRight: 12,
+    width: 20,
   },
   sheetRowIndicatorActive: {
     borderColor: ORANGE,
   },
   sheetRowIndicatorDot: {
     backgroundColor: ORANGE,
-    borderRadius: 3.5,
-    height: 7,
-    width: 7,
+    borderRadius: 4,
+    height: 8,
+    width: 8,
   },
   sheetRowLabel: {
     color: '#111827',
-    fontSize: 16,
-    fontWeight: '500',
-    lineHeight: 22,
+    fontSize: 15.5,
+    fontWeight: '600',
+    lineHeight: 21,
   },
   sheetRowLeft: {
     alignItems: 'center',
@@ -1418,11 +1437,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   sheetTitle: {
-    color: '#6B7280',
-    fontSize: 13,
-    fontWeight: '600',
+    color: '#334155',
+    fontSize: 14,
+    fontWeight: '700',
     paddingHorizontal: 18,
-    paddingVertical: 10,
+    paddingBottom: 10,
+    paddingTop: 8,
+    textAlign: 'center',
   },
   stadiumInput: {
     backgroundColor: INPUT_BG,
