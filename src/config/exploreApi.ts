@@ -2,6 +2,7 @@ import { Platform } from 'react-native';
 import { APP_ENV } from './appEnv.generated';
 
 const DEFAULT_API_PORT = 8090;
+const PRODUCTION_API_BASE_URL = 'https://macradar.onrender.com';
 
 // Android emulators cannot reach localhost directly, so use 10.0.2.2 there.
 const LOCAL_API_HOST = Platform.select({
@@ -90,8 +91,12 @@ const configuredMapboxPublicToken = sanitizeEnvValue(APP_ENV.mapboxPublicToken);
 const configuredPort = parsePort(sanitizeEnvValue(APP_ENV.apiPort));
 
 const fallbackApiBaseUrl = `http://${LOCAL_API_HOST}:${configuredPort}`;
+const runtimeDefaultApiBaseUrl = __DEV__
+  ? fallbackApiBaseUrl
+  : PRODUCTION_API_BASE_URL;
 export const API_BASE_URL_CANDIDATES = dedupeUrls([
   configuredApiBaseUrl,
+  runtimeDefaultApiBaseUrl,
   fallbackApiBaseUrl,
 ]);
 
