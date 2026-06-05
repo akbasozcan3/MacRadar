@@ -28,7 +28,6 @@ function parseEnvFile(raw) {
     ) {
       value = value.slice(1, -1);
     }
-
     output[key] = value;
   }
 

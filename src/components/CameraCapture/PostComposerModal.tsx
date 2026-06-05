@@ -1813,16 +1813,16 @@ export default function PostComposerModal({
             }
             closeTrendingTagBrowser();
           }}
-          statusBarTranslucent={false}
+          statusBarTranslucent={true}
           transparent={true}
           visible={isTrendingTagBrowserVisible}
         >
           <StatusBar
             animated={true}
-            backgroundColor="#ffffff"
+            backgroundColor="transparent"
             barStyle="dark-content"
             hidden={false}
-            translucent={false}
+            translucent={true}
           />
           <View style={styles.trendingTagModalRoot}>
             <Pressable
@@ -1838,6 +1838,7 @@ export default function PostComposerModal({
                 },
               ]}
             >
+              <View style={styles.trendingTagModalHandle} />
               <View style={styles.trendingTagModalHeader}>
                 {activeTrendingTagKey ? (
                   <Pressable
@@ -3144,7 +3145,10 @@ const styles = StyleSheet.create({
   },
   trendingTagIconButton: {
     alignItems: 'center',
+    backgroundColor: '#f3f4f6',
+    borderColor: '#e5e7eb',
     borderRadius: 18,
+    borderWidth: 1,
     height: 36,
     justifyContent: 'center',
     width: 36,
@@ -3168,14 +3172,19 @@ const styles = StyleSheet.create({
   },
   trendingTagListItem: {
     alignItems: 'center',
-    backgroundColor: '#eef0f4',
-    borderColor: '#e8ebf0',
+    backgroundColor: '#ffffff',
+    borderColor: '#e5e7eb',
     borderRadius: 15,
     borderWidth: 1,
     flexDirection: 'row',
     marginBottom: 8,
     minHeight: 66,
     paddingHorizontal: 12,
+    shadowColor: '#0f172a',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.05,
+    shadowRadius: 10,
+    elevation: 1,
   },
   trendingTagListMeta: {
     color: '#64748b',
@@ -3200,14 +3209,25 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingBottom: 10,
+    paddingBottom: 12,
+    paddingTop: 8,
+  },
+  trendingTagModalHandle: {
+    alignSelf: 'center',
+    backgroundColor: '#d1d5db',
+    borderRadius: 999,
+    height: 5,
+    marginBottom: 10,
+    width: 42,
   },
   trendingTagModalRoot: {
     flex: 1,
     justifyContent: 'flex-end',
   },
   trendingTagModalSheet: {
-    backgroundColor: '#f4f5f7',
+    backgroundColor: '#f8fafc',
+    borderColor: '#e5e7eb',
+    borderTopWidth: 1,
     borderTopLeftRadius: 38,
     borderTopRightRadius: 38,
     maxHeight: '92%',
@@ -3216,8 +3236,8 @@ const styles = StyleSheet.create({
   trendingTagModalTitle: {
     color: '#111827',
     flex: 1,
-    fontSize: 14,
-    fontWeight: '400',
+    fontSize: 15.5,
+    fontWeight: '600',
     textAlign: 'center',
   },
   trendingTagPostAuthor: {
@@ -3283,13 +3303,13 @@ const styles = StyleSheet.create({
   trendingTagSearchRow: {
     alignItems: 'center',
     backgroundColor: '#ffffff',
-    borderColor: '#dbe3ef',
-    borderRadius: 12,
+    borderColor: '#d1d5db',
+    borderRadius: 14,
     borderWidth: 1,
     flexDirection: 'row',
-    height: 42,
+    height: 46,
     marginTop: 12,
-    paddingHorizontal: 11,
+    paddingHorizontal: 12,
   },
   trendingTagStatCard: {
     backgroundColor: '#ffffff',

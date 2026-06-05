@@ -51,8 +51,14 @@ function normalizeBaseUrl(rawValue: string | null, expected: 'http' | 'ws') {
     ) {
       return null;
     }
-    if (expected === 'ws' && protocol !== 'ws:' && protocol !== 'wss:') {
-      return null;
+    if (expected === 'ws') {
+      if (protocol !== 'ws:' && protocol !== 'wss:') {
+        return null;
+      }
+      if (!parsed.host) {
+        return null;
+      }
+      return `${protocol}//${parsed.host}`;
     }
 
     return parsed.origin;

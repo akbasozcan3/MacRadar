@@ -1142,25 +1142,41 @@ const server = http.createServer(async (req, res) => {
       return;
     }
     if (method === 'GET' && path === '/api/v1/explore/search/users') {
-      const r = backend.searchUsers(req, url.searchParams.get('q') || '', {
-        cursor: url.searchParams.get('cursor') || '',
-        limit: Number(url.searchParams.get('limit') || 20),
-      });
-      sendJson(res, 200, r, {
-        'Cache-Control': 'private, max-age=30, stale-while-revalidate=90',
-      });
+      try {
+        const r = backend.searchUsers(req, url.searchParams.get('q') || '', {
+          cursor: url.searchParams.get('cursor') || '',
+          limit: Number(url.searchParams.get('limit') || 20),
+        });
+        sendJson(res, 200, r, {
+          'Cache-Control': 'private, max-age=30, stale-while-revalidate=90',
+        });
+      } catch {
+        sendJson(
+          res,
+          401,
+          errorPayload('unauthorized', 'authorization required'),
+        );
+      }
       return;
     }
     if (method === 'GET' && path === '/api/v1/explore/search/posts') {
-      const r = backend.searchPosts(req, url.searchParams.get('q') || '', {
-        cursor: url.searchParams.get('cursor') || '',
-        filter: url.searchParams.get('mediaType') || 'all',
-        limit: Number(url.searchParams.get('limit') || 20),
-        sort: url.searchParams.get('sort') || 'relevant',
-      });
-      sendJson(res, 200, r, {
-        'Cache-Control': 'private, max-age=45, stale-while-revalidate=135',
-      });
+      try {
+        const r = backend.searchPosts(req, url.searchParams.get('q') || '', {
+          cursor: url.searchParams.get('cursor') || '',
+          filter: url.searchParams.get('mediaType') || 'all',
+          limit: Number(url.searchParams.get('limit') || 20),
+          sort: url.searchParams.get('sort') || 'relevant',
+        });
+        sendJson(res, 200, r, {
+          'Cache-Control': 'private, max-age=45, stale-while-revalidate=135',
+        });
+      } catch {
+        sendJson(
+          res,
+          401,
+          errorPayload('unauthorized', 'authorization required'),
+        );
+      }
       return;
     }
     if (method === 'GET' && LOCATION_SEARCH_PATHS.has(path)) {

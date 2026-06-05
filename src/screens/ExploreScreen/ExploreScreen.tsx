@@ -7055,7 +7055,7 @@ export default function ExploreScreen({
                             }}
                           >
                             <Text className="text-[12px] font-semibold text-[#ff4d67]">
-                              Tumunu Temizle
+                              Tümünü Temizle
                             </Text>
                           </Pressable>
                         </View>
@@ -7169,7 +7169,7 @@ export default function ExploreScreen({
                                   : 'font-medium text-[#667085]'
                                   }`}
                               >
-                                Tumu
+                                Tümü
                               </Text>
                             </Pressable>
                             <Pressable
@@ -7185,7 +7185,7 @@ export default function ExploreScreen({
                                   : 'font-medium text-[#667085]'
                                   }`}
                               >
-                                Fotograf
+                                Fotografı
                               </Text>
                             </Pressable>
                             <Pressable
@@ -7564,8 +7564,8 @@ export default function ExploreScreen({
                               numberOfLines={2}
                             >
                               {item.hasVideo
-                                ? 'Bu konumdaki foto ve videolari tek akista ac.'
-                                : 'Bu konumdaki fotograflari tek akista ac.'}
+                                ? 'Bu konumdaki foto ve videolar tek akışta aç.'
+                                : 'Bu konumdaki fotograflar tek akışta aç.'}
                             </Text>
                             <Text className="mt-1 text-[11px] text-[#98a2b3]">
                               {item.hasVideo ? 'Foto + video' : 'Sadece foto'}

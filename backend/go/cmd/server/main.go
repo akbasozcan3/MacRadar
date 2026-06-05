@@ -60,10 +60,10 @@ func main() {
 	}
 	defer pool.Close()
 
-	startupCtx, startupCancel := context.WithTimeout(ctx, 10*time.Second)
-	defer startupCancel()
+	pingCtx, pingCancel := context.WithTimeout(ctx, 15*time.Second)
+	defer pingCancel()
 
-	if err := pool.Ping(startupCtx); err != nil {
+	if err := pool.Ping(pingCtx); err != nil {
 		logger.Error("database ping failed", slog.Any("error", err))
 		os.Exit(1)
 	}
@@ -71,7 +71,17 @@ func main() {
 	if shouldSkipMigrations() {
 		logger.Info("database migrations skipped", slog.String("reason", "SKIP_MIGRATIONS is enabled"))
 	} else {
-		if err := migrate.Run(startupCtx, pool, logger, cfg.MigrationsDir); err != nil {
+		migrationTimeout := 5 * time.Minute
+		if raw := strings.TrimSpace(os.Getenv("MIGRATION_STARTUP_TIMEOUT")); raw != "" {
+			if parsed, err := time.ParseDuration(raw); err == nil && parsed > 0 {
+				migrationTimeout = parsed
+			}
+		}
+
+		migrationCtx, migrationCancel := context.WithTimeout(ctx, migrationTimeout)
+		defer migrationCancel()
+
+		if err := migrate.Run(migrationCtx, pool, logger, cfg.MigrationsDir); err != nil {
 			logger.Error("database migration failed", slog.Any("error", err))
 			os.Exit(1)
 		}
@@ -117,7 +127,9 @@ func main() {
 			os.Exit(1)
 		}
 		defer redisStore.Close()
-		if pingErr := redisStore.Ping(startupCtx); pingErr != nil {
+		redisPingCtx, redisPingCancel := context.WithTimeout(ctx, 5*time.Second)
+		defer redisPingCancel()
+		if pingErr := redisStore.Ping(redisPingCtx); pingErr != nil {
 			logger.Error("redis cache ping failed", slog.Any("error", pingErr))
 			os.Exit(1)
 		}

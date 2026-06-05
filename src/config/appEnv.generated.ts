@@ -12,9 +12,9 @@ export type GeneratedAppEnv = {
 };
 
 export const APP_ENV: GeneratedAppEnv = {
-  apiBaseUrl: null,
+  apiBaseUrl: "https://macradar.onrender.com",
   apiPort: "8090",
   mapboxPublicToken: "pk.eyJ1IjoibWFjcmFkYXIiLCJhIjoiY2x0ZXN0MTIzIn0.test_token_placeholder",
-  sensorWsUrl: null,
-  wsBaseUrl: null,
+  sensorWsUrl: "wss://macradar-rust-sensor.onrender.com/ws/sensors",
+  wsBaseUrl: "wss://macradar.onrender.com",
 };

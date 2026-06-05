@@ -59,7 +59,7 @@ function translateByPattern(input: string) {
       match => `Code sent to ${match[1]}. Expires: ${match[2]}`,
     ],
     [/^(\d+)\s+yeni takip istegi$/iu, match => `${match[1]} new follow requests`],
-    [/^tumunu goster \((\d+)\)$/iu, match => `Show all (${match[1]})`],
+    [/^Tümünü göster \((\d+)\)$/iu, match => `Show all (${match[1]})`],
     [/^son istek @(.+)$/iu, match => `Latest request @${match[1]}`],
     [/^(\d+)\s*dk$/iu, match => `${match[1]}m`],
     [/^(\d+)\s*sa$/iu, match => `${match[1]}h`],

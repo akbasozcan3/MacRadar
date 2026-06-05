@@ -79,7 +79,7 @@ func unauthorizedError() error {
 }
 
 func invalidCredentialsError() error {
-	return newAppError(http.StatusUnauthorized, "invalid_credentials", "Email, kullanici adi veya sifre hatali.", ErrInvalidCredentials, nil)
+	return newAppError(http.StatusUnauthorized, "invalid_credentials", "Email, Kullanıcı adı veya şifre hatalı.", ErrInvalidCredentials, nil)
 }
 
 func currentPasswordInvalidError() error {

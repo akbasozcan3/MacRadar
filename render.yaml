@@ -1,0 +1,55 @@
+# MacRadar production blueprint for Render.com
+# Dashboard: New > Blueprint > Connect this GitHub repo
+# Or apply manually: copy env vars into existing services.
+
+databases:
+  - name: macradar-postgres
+    plan: free
+    databaseName: macradar
+    user: macradar
+
+services:
+  - type: web
+    name: MacRadar
+    runtime: go
+    region: oregon
+    plan: free
+    rootDir: backend/go
+    buildCommand: go build -o server ./cmd/server
+    startCommand: ./server
+    healthCheckPath: /healthz
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_BASE_URL
+        value: https://macradar.onrender.com
+      - key: MIGRATIONS_DIR
+        value: ../migrations
+      - key: SKIP_MIGRATIONS
+        value: "false"
+      - key: MIGRATION_STARTUP_TIMEOUT
+        value: 5m
+      - key: AUTH_DEBUG_PREVIEW
+        value: "false"
+      - key: ALLOWED_ORIGINS
+        value: https://macradar.onrender.com
+      - key: DATABASE_URL
+        fromDatabase:
+          name: macradar-postgres
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        sync: false
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: SMTP_FROM
+        sync: false
+      - key: GOOGLE_WEB_CLIENT_ID
+        sync: false
+      - key: MAPBOX_PUBLIC_TOKEN
+        sync: false

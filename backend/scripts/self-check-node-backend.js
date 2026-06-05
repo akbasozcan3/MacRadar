@@ -175,7 +175,33 @@ async function runSelfCheck() {
   expectStatus(invalidJson, 400, 'invalid json payload');
   expectErrorCode(invalidJson, 'invalid_json', 'invalid json payload');
 
+  const selfCheckSeed = Date.now().toString(36);
+  const socialLogin = await request({
+    body: {
+      city: 'Istanbul',
+      email: `selfcheck.${selfCheckSeed}@macradar.app`,
+      fullName: 'Self Check',
+      provider: 'google',
+      username: `sc${selfCheckSeed.slice(-8)}`,
+    },
+    method: 'POST',
+    path: '/api/v1/auth/social',
+  });
+  expectStatus(socialLogin, 200, 'auth/social self-check');
+  const socialPayload = unwrapData(
+    parseJson(socialLogin.body, 'auth/social self-check'),
+  );
+  const authToken =
+    typeof socialPayload?.session?.token === 'string'
+      ? socialPayload.session.token
+      : '';
+  if (!authToken) {
+    throw new Error('auth/social self-check: session token missing');
+  }
+  const authHeaders = { Authorization: `Bearer ${authToken}` };
+
   const exploreUsers = await request({
+    headers: authHeaders,
     method: 'GET',
     path: '/api/v1/explore/search/users?limit=3&cursor=0',
   });
@@ -194,6 +220,7 @@ async function runSelfCheck() {
   }
 
   const explorePosts = await request({
+    headers: authHeaders,
     method: 'GET',
     path: '/api/v1/explore/search/posts?limit=3&mediaType=photo&sort=recent',
   });
